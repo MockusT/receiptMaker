@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from '../Button/Button';
 import SubReceipt from '../SubReceipt/SubReceipt';
 import SubReceiptInt from '../../Interfaces/SubReceiptInt';
@@ -7,6 +7,13 @@ const Receipt: React.FunctionComponent = () => {
   const [subReceipts, setSubReceipts] = useState<SubReceiptInt[]>([]);
   const [id, setId] = useState(0);
   const [cost, setCost] = useState(0);
+
+  useEffect(() => {
+    setCost(subReceipts.reduce((a, b) => a + b.products.reduce((c, d) => c + Number.parseFloat(
+      Number.isNaN(Number.parseFloat(d.cost.toString()))
+        ? '0' : d.cost.toString(),
+    ), 0), 0));
+  }, [subReceipts]);
 
   const handleAddSubReceipt = (): void => {
     setSubReceipts([...subReceipts, {
@@ -43,6 +50,7 @@ const Receipt: React.FunctionComponent = () => {
       <br />
       <br />
       <Button name="Add rec" handleClick={handleAddSubReceipt} />
+      <p>{cost}</p>
     </div>
   );
 };
