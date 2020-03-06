@@ -45,10 +45,6 @@ const Receipt: React.FunctionComponent = () => {
           key={s.id}
         />
       ))}
-      <br />
-      <br />
-      <br />
-      <br />
       <Button name="Add rec" handleClick={handleAddSubReceipt} />
       <p>{cost}</p>
     </div>
