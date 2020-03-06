@@ -22,14 +22,9 @@ const Receipt: React.FunctionComponent = () => {
   };
 
   const handleProductChange = (
-    subReceiptId: number,
-    e: React.ChangeEvent<HTMLInputElement>,
-    productId: number,
+    subReceipt: SubReceiptInt,
   ): void => {
-    const { name, value } = e.currentTarget;
-    setSubReceipts(subReceipts.map((s) => (s.id !== subReceiptId ? s : {
-      ...s, products: s.products.map((p) => (p.id !== productId ? p : { ...p, [name]: value })),
-    })));
+    setSubReceipts(subReceipts.map((s) => (s.id !== subReceipt.id ? s : subReceipt)));
   };
 
   return (
@@ -38,7 +33,7 @@ const Receipt: React.FunctionComponent = () => {
       {subReceipts.map((s) => (
         <SubReceipt
           subReceipt={s}
-          setProducts={handleProductChange}
+          setSubReceipt={handleProductChange}
           handleAddProduct={(): void => handleAddProduct(s.id)}
           key={s.id}
         />
