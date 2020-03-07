@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 import Button from '../Button/Button';
 import SubReceipt from '../SubReceipt/SubReceipt';
 import SubReceiptInt from '../../Interfaces/SubReceiptInt';
@@ -36,18 +37,52 @@ const Receipt: React.FunctionComponent = () => {
     setSubReceipts(subReceipts.map((s) => (s.id !== subReceipt.id ? s : subReceipt)));
   };
 
+  const onDragEnd = (result: any): void => {
+    const { destination, source } = result;
+    if (!destination) {
+      return;
+    }
+    const ans = [...subReceipts];
+    const [removed] = ans.splice(source.index, 1);
+    ans.splice(destination.index, 0, removed);
+    setSubReceipts(ans);
+  };
+
   return (
     <div className="container">
-      <div className={subReceipts.length ? 'sub-receipt-container' : ''}>
-        {subReceipts.map((s) => (
-          <SubReceipt
-            subReceipt={s}
-            setSubReceipt={handleProductChange}
-            handleAddProduct={(): void => handleAddProduct(s.id)}
-            key={s.id}
-          />
-        ))}
-      </div>
+      <DragDropContext onDragEnd={onDragEnd}>
+        <Droppable droppableId="Receipt">
+          {(provided) => (
+            // eslint-disable-next-line react/jsx-props-no-spreading
+            <div
+              className={subReceipts.length ? 'sub-receipt-container' : ''}
+              ref={provided.innerRef}
+              {...provided.droppableProps}
+            >
+              {subReceipts.map((s, i) => (
+                <Draggable draggableId={s.id.toString()} index={i} key={s.id}>
+                  {(providedDrag) => (
+                    <div
+                          // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+                          // @ts-ignore
+                      ref={providedDrag.innerRef}
+                      {...providedDrag.draggableProps}
+                      {...providedDrag.dragHandleProps}
+                    >
+                      <SubReceipt
+                        subReceipt={s}
+                        setSubReceipt={handleProductChange}
+                        handleAddProduct={(): void => handleAddProduct(s.id)}
+                      />
+                    </div>
+                  )}
+                </Draggable>
+              ))}
+              {provided.placeholder}
+            </div>
+          )}
+        </Droppable>
+      </DragDropContext>
       <div className="total-container">
         <TotalCost cost={cost} />
         <div className="button-wrapper">
