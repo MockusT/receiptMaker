@@ -1,4 +1,4 @@
-##Project setup
+### Project setup
 
 All you need to do is to launch 2 scripts named below. Note: program doesn't save written data in DB or local storage, so it will be gone on refresh
 
