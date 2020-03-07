@@ -18,7 +18,7 @@ const SubReceipt: React.FunctionComponent<SubReceiptProps> = (props: SubReceiptP
 
   const handleProductChange = (e: React.ChangeEvent<HTMLInputElement>, currentId: number): void => {
     const { name, value } = e.currentTarget;
-    let correctValue = parseFloat(value);
+    let correctValue = value === 'cost' ? parseFloat(value) : value;
     if (name === 'cost') if (correctValue < 0) correctValue = 0;
     setSubReceipt({
       ...subReceipt,
