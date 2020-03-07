@@ -3,6 +3,7 @@ import Button from '../Button/Button';
 import SubReceipt from '../SubReceipt/SubReceipt';
 import SubReceiptInt from '../../Interfaces/SubReceiptInt';
 import './receipt.css';
+import TotalCost from '../TotalCost/TotalCost';
 
 const Receipt: React.FunctionComponent = () => {
   const [subReceipts, setSubReceipts] = useState<SubReceiptInt[]>([]);
@@ -48,14 +49,7 @@ const Receipt: React.FunctionComponent = () => {
         ))}
       </div>
       <div className="total-container">
-        <div className="total-price">
-          <p>Total:</p>
-          <p className="cost">
-            {cost}
-            {' '}
-            €
-          </p>
-        </div>
+        <TotalCost cost={cost} />
         <div className="button-wrapper">
           <Button name="Add receipt" handleClick={handleAddSubReceipt} />
         </div>

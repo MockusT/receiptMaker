@@ -3,6 +3,7 @@ import Button from '../Button/Button';
 import SubReceiptInt from '../../Interfaces/SubReceiptInt';
 import Select from '../Select/Select';
 import './subReceipt.css';
+import TotalCost from "../TotalCost/TotalCost";
 
 interface SubReceiptProps {
   subReceipt: SubReceiptInt;
@@ -43,7 +44,10 @@ const SubReceipt: React.FunctionComponent<SubReceiptProps> = (props: SubReceiptP
 
   return (
     <div className="subReceipt">
-      <Select value={category} handleChange={handleCategoryChange} />
+      <div>
+        <Select value={category} handleChange={handleCategoryChange} />
+        <Button name="Add expense" handleClick={handleAddProduct} />
+      </div>
       {subReceipt.products.map((p) => (
         <div key={p.id}>
           <input
@@ -60,11 +64,7 @@ const SubReceipt: React.FunctionComponent<SubReceiptProps> = (props: SubReceiptP
           />
         </div>
       ))}
-      <Button name="Add expense" handleClick={handleAddProduct} />
-      <p>
-        Cost is:
-        {price}
-      </p>
+      <TotalCost cost={price} />
     </div>
   );
 };
