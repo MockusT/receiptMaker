@@ -1,4 +1,5 @@
 import React from 'react';
+import './select.css';
 
 interface SelectProps {
     value: string;
@@ -11,10 +12,10 @@ const Select: React.FunctionComponent<SelectProps> = (props: SelectProps) => {
   return (
 
     <label htmlFor="select">
-      <select id="select" value={value} onChange={handleChange}>
-        <option value="Food">Food</option>
-        <option value="Houseware">Houseware</option>
-        <option value="Entertainment">Entertainment</option>
+      <select id="select" value={value} onChange={handleChange} className="select">
+        <option value="Food" className={value !== 'Food' ? 'option' : 'hidden'}>Food</option>
+        <option value="Houseware" className={value !== 'Houseware' ? 'option' : 'hidden'}>Houseware</option>
+        <option value="Entertainment" className={value !== 'Entertainment' ? 'option' : 'hidden'}>Entertainment</option>
       </select>
     </label>
 

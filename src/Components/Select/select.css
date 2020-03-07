@@ -1,0 +1,15 @@
+.select{
+    background-color: #E4E4E4; /* For browsers that do not support gradients */
+    background-image: linear-gradient(#E4E4E4, #FDFDFD);
+    height: 40px;
+    border-radius: 5px;
+    width: 120px;
+    outline: none;
+    text-align-last: center;
+}
+.option {
+    background-color: #FFFFFF;
+}
+.hidden {
+    display: none;
+}
