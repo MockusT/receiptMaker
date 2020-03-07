@@ -1,5 +1,4 @@
 import React from 'react';
-import './totalCost.css';
 
 interface TotalCostProps {
     cost: number;
@@ -9,7 +8,7 @@ const TotalCost: React.FunctionComponent<TotalCostProps> = (props: TotalCostProp
   const { cost } = props;
 
   return (
-    <div className="total-price">
+    <div className="split-content">
       <p>Total:</p>
       <p className="cost">
         {cost}

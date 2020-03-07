@@ -44,12 +44,12 @@ const SubReceipt: React.FunctionComponent<SubReceiptProps> = (props: SubReceiptP
 
   return (
     <div className="subReceipt">
-      <div>
+      <div className="split-content">
         <Select value={category} handleChange={handleCategoryChange} />
         <Button name="Add expense" handleClick={handleAddProduct} />
       </div>
       {subReceipt.products.map((p) => (
-        <div key={p.id}>
+        <div key={p.id} className="split-content">
           <input
             value={p.name}
             onChange={(e): void => handleProductChange(e, p.id)}
