@@ -11,9 +11,7 @@ const TotalCost: React.FunctionComponent<TotalCostProps> = (props: TotalCostProp
     <div className="split-content">
       <p>Total:</p>
       <p className="cost">
-        {cost}
-        {' '}
-        €
+        {`${cost} €`}
       </p>
     </div>
   );
