@@ -3,7 +3,7 @@ import Button from '../Button/Button';
 import SubReceiptInt from '../../Interfaces/SubReceiptInt';
 import Select from '../Select/Select';
 import './subReceipt.css';
-import TotalCost from "../TotalCost/TotalCost";
+import TotalCost from '../TotalCost/TotalCost';
 
 interface SubReceiptProps {
   subReceipt: SubReceiptInt;
@@ -44,7 +44,7 @@ const SubReceipt: React.FunctionComponent<SubReceiptProps> = (props: SubReceiptP
 
   return (
     <div className="subReceipt">
-      <div className="split-content">
+      <div className="split-content center-container">
         <Select value={category} handleChange={handleCategoryChange} />
         <Button name="Add expense" handleClick={handleAddProduct} />
       </div>
@@ -54,14 +54,20 @@ const SubReceipt: React.FunctionComponent<SubReceiptProps> = (props: SubReceiptP
             value={p.name}
             onChange={(e): void => handleProductChange(e, p.id)}
             name="name"
+            className="input input-text"
           />
-          <input
-            value={p.cost}
-            onChange={(e): void => handleProductChange(e, p.id)}
-            name="cost"
-            type="number"
-            min={0}
-          />
+          <div className="div-numeric">
+            <span className="input-symbol-euro">
+              <input
+                value={p.cost}
+                onChange={(e): void => handleProductChange(e, p.id)}
+                name="cost"
+                type="number"
+                min={0}
+                className="input input-numeric"
+              />
+            </span>
+          </div>
         </div>
       ))}
       <TotalCost cost={price} />

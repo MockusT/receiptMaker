@@ -1,15 +1,3 @@
-.input-symbol-euro {
-    position: relative;
-}
-.input-symbol-euro input {
-    padding-left:18px;
-}
-.input-symbol-euro:after {
-    position: absolute;
-    top: 0;
-    content:"€";
-    right: 5px;
-}
 .container {
     display: flex;
     flex-direction: column;
