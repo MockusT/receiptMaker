@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Button from '../Button/Button';
 import SubReceiptInt from '../../Interfaces/SubReceiptInt';
 import Select from '../Select/Select';
+import './subReceipt.css';
 
 interface SubReceiptProps {
   subReceipt: SubReceiptInt;
@@ -41,7 +42,7 @@ const SubReceipt: React.FunctionComponent<SubReceiptProps> = (props: SubReceiptP
 
 
   return (
-    <div>
+    <div className="subReceipt">
       <Select value={category} handleChange={handleCategoryChange} />
       {subReceipt.products.map((p) => (
         <div key={p.id}>
@@ -59,7 +60,7 @@ const SubReceipt: React.FunctionComponent<SubReceiptProps> = (props: SubReceiptP
           />
         </div>
       ))}
-      <Button name="Add" handleClick={handleAddProduct} />
+      <Button name="Add expense" handleClick={handleAddProduct} />
       <p>
         Cost is:
         {price}

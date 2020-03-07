@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Button from '../Button/Button';
 import SubReceipt from '../SubReceipt/SubReceipt';
 import SubReceiptInt from '../../Interfaces/SubReceiptInt';
+import './receipt.css';
 
 const Receipt: React.FunctionComponent = () => {
   const [subReceipts, setSubReceipts] = useState<SubReceiptInt[]>([]);
@@ -35,18 +36,30 @@ const Receipt: React.FunctionComponent = () => {
   };
 
   return (
-    <div>
-      <p>RECEIPT</p>
-      {subReceipts.map((s) => (
-        <SubReceipt
-          subReceipt={s}
-          setSubReceipt={handleProductChange}
-          handleAddProduct={(): void => handleAddProduct(s.id)}
-          key={s.id}
-        />
-      ))}
-      <Button name="Add rec" handleClick={handleAddSubReceipt} />
-      <p>{cost}</p>
+    <div className="container">
+      <div className={subReceipts.length ? 'sub-receipt-container' : ''}>
+        {subReceipts.map((s) => (
+          <SubReceipt
+            subReceipt={s}
+            setSubReceipt={handleProductChange}
+            handleAddProduct={(): void => handleAddProduct(s.id)}
+            key={s.id}
+          />
+        ))}
+      </div>
+      <div className="total-container">
+        <div className="total-price">
+          <p>Total:</p>
+          <p className="cost">
+            {cost}
+            {' '}
+            €
+          </p>
+        </div>
+        <div className="button-wrapper">
+          <Button name="Add receipt" handleClick={handleAddSubReceipt} />
+        </div>
+      </div>
     </div>
   );
 };
