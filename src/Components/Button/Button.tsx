@@ -1,4 +1,5 @@
 import React from 'react';
+import './button.css';
 
 interface ButtonProps {
     name: string;
@@ -9,7 +10,7 @@ const Button: React.FunctionComponent<ButtonProps> = (props: ButtonProps) => {
   const { name, handleClick } = props;
 
   return (
-    <button onClick={handleClick} type="button">
+    <button onClick={handleClick} type="button" className="button">
       {name}
     </button>
   );
